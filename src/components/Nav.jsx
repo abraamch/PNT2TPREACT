@@ -1,11 +1,12 @@
 import React from 'react'
 import Titulo from './Titulo'
+import { Link } from 'react-router-dom'
 const Nav = () => {
   return (
     
     <nav>  
         <Titulo nombre = 'mi app del clima'/> 
-            <a href='/'>Home     </a>
+            <Link to={'/'}> Home </Link>
            <a href='/carrito'> Carrito </a>
            <a href='/contacto'>   Contacto</a>
     </nav>

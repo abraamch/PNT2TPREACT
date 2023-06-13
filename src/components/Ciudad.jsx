@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Ciudad = ({ city, clima }) => {
+const Ciudad = ({ city, clima, error }) => {
   if (!clima) {
     return <p>Cargando datos de clima...</p>;
   }
@@ -16,15 +16,25 @@ const Ciudad = ({ city, clima }) => {
   } else {
     imageSrc = 'https://cdn-icons-png.flaticon.com/512/6393/6393305.png';
   }
-  return (
-    <div>
-      <h2>Condiciones climáticas en {city}, {sys && sys.country}</h2>
-      <h2>Temperatura: {main && main.temp} °C </h2>
-      <h2>Descripcion: {weather && weather[0].description} </h2>
-      <img src={imageSrc} alt="weather" width={100}/>
-      <Link to={`/clima/${city}`}>Ver detalles</Link>
-    </div>
-  );
+
+  if (error !== null) {
+    return (
+      <div>
+        <p>{error.message}</p>
+      </div>
+    );
+  } else {   
+    return (
+      <div>
+        <h2>Condiciones climáticas en {city}, {sys && sys.country}</h2>
+        <h2>Temperatura: {main && main.temp} °C </h2>
+        <h2>Descripcion: {weather && weather[0].description} </h2>
+        <img src={imageSrc} alt="weather" width={100}/>
+        <Link to={`/clima/${city}`}>Ver detalles</Link>
+      </div>
+    );
+  }
+
 };
 
 export default Ciudad;
