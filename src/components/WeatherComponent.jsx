@@ -11,7 +11,7 @@ const WeatherComponent = ({ city }) => {
  
 
   useEffect(() => {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
+    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=sp&appid=${apiKey}&units=metric`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('La ciudad ingresada no existe');
