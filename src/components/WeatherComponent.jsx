@@ -5,13 +5,11 @@ import { WeatherContext } from './WeatherContext';
 const WeatherComponent = ({ city }) => {
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState(null);
-  const apiKey = 'd782ac7b05a47b38afeaac32e2f86ce8';
+  const apiKey = 'ff9ca7f5e75c4880a5924433232106';
   const { setWeatherData: setWeatherDataContext } = useContext(WeatherContext);
 
- 
-
   useEffect(() => {
-    fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&lang=sp&appid=${apiKey}&units=metric`)
+    fetch(`https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${city}&lang=es`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('La ciudad ingresada no existe');
@@ -21,23 +19,22 @@ const WeatherComponent = ({ city }) => {
       .then((data) => {
         setWeatherData(data);
         setWeatherDataContext(data);
-        setError(null)
+        setError(null);
       })
       .catch((error) => {
         setError(error);
       });
-  }, [city, apiKey, setWeatherDataContext]);
+  }, [city]);
 
-   
-    return (
-      <div>
-        <Ciudad city={city} clima={weatherData} error={error}/>
-      </div>
-    );
-  }
-
+  return (
+    <div>
+      <Ciudad city={city} clima={weatherData} error={error} />
+    </div>
+  );
+};
 
 export default WeatherComponent;
+
 
 
  //console.log(weatherData1)

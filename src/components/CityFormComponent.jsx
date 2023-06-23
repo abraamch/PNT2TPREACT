@@ -1,29 +1,34 @@
 import React, { useState } from 'react';
 import WeatherComponent from './WeatherComponent';
 
-const CityFormComponent = () => {
+const Form = () => {
   const [city, setCity] = useState('');
-  const [submittedCity, setSubmittedCity] = useState(null);
+  const [submittedCity, setSubmittedCity] = useState('');
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    setSubmittedCity(submittedCity);
-    
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmittedCity(city);
+    setCity('');
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Ingrese la ciudad:
-          <input type="text" value={submittedCity} onInput={(e) => setSubmittedCity(e.target.value)} />
-        </label>
-        <button type="submit">Buscar</button>
-      </form>
-      
-      {submittedCity && <WeatherComponent city={submittedCity} />}
-    </div>
-  );
-};
+    <div className="form-container">
+  <form onSubmit={handleSubmit}>
+    <label className="form-label">
+      <h3>Ciudad:</h3> 
+      <input
+        type="text"
+        value={city}
+        onChange={(e) => setCity(e.target.value)}
+        className="form-control"
+      />
+    </label>
+    <button className="btn btn-primary" type="submit">Buscar</button>
+  </form>
+  <WeatherComponent city={submittedCity} />
+</div>
 
-export default CityFormComponent;
+  );
+}
+
+export default Form;

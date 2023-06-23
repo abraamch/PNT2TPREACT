@@ -6,7 +6,7 @@ const Main = () => {
   
   
   return (
-    <div>
+    <div className='main-body'>
       
   <CityFormComponent/>
     </div>

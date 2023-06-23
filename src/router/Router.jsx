@@ -5,8 +5,10 @@ import {
 } from "react-router-dom";
 import App from "../App";
 
+
 import Main from "../components/Main";
-import CityDetails from "../components/CityDetails"
+
+import PronosticoContainer from "../components/PronosticoContainer";
 
 const router = createBrowserRouter([
   {
@@ -20,8 +22,8 @@ const router = createBrowserRouter([
         
       },
       {
-        path: "/clima/:city",
-        element: <CityDetails/>,
+        path: "/pronostico/:city",
+        element: <PronosticoContainer/>,
         
       }
     ]

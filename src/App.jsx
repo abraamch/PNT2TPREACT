@@ -9,6 +9,7 @@ import Header from './components/Header'
 import Main from './components/Main'
 import Contador from './components/context/Contador'
 import { Outlet } from 'react-router-dom'
+import Modo from './components/Modo'
 
 function App() {
   
@@ -23,7 +24,7 @@ function App() {
   
    
       </WeatherProvider> 
-    
+      
   )
 }
 
