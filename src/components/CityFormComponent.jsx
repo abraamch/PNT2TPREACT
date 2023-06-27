@@ -10,6 +10,11 @@ const Form = () => {
     setSubmittedCity(city);
     setCity('');
   };
+  const handleMiCiudad = (e) => {
+    e.preventDefault();
+    setSubmittedCity('Buenos Aires');
+    setCity('');
+  };
 
   return (
     <div className="form-container">
@@ -17,6 +22,7 @@ const Form = () => {
     <label className="form-label">
       <h3>Ciudad:</h3> 
       <input
+      placeholder='ingresa la ciudad'
         type="text"
         value={city}
         onChange={(e) => setCity(e.target.value)}
@@ -24,7 +30,10 @@ const Form = () => {
       />
     </label>
     <button className="btn btn-primary" type="submit">Buscar</button>
-  </form>
+    </form>
+
+    <form onSubmit={handleMiCiudad}><button className="btn btn-primary" type="submit">Mi ciudad</button></form>
+  
   <WeatherComponent city={submittedCity} />
 </div>
 
