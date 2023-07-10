@@ -8,8 +8,8 @@ const Nav = () => {
     <nav>  
         <Titulo nombre = 'mi app del clima'/> 
             <Link to={'/'}> Home </Link>
-           <a href='/carrito'> Carrito </a>
-           <a href='/contacto'>   Contacto</a>
+           <a href='/'> Carrito </a>
+           <a href='/'>   Contacto</a>
            
     </nav>
   )

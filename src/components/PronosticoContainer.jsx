@@ -1,34 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Pronostico from './Pronostico';
+import { ForecastContext } from './context/ForecastContext';
 
 const PronosticoContainer = () => {
-  const [forecast, setForecast] = useState([]);
-  const [error, setError] = useState(null);
-  const apiKey = 'ff9ca7f5e75c4880a5924433232106'; 
   const { city } = useParams();
+ 
+  const { forecastData, error, setCity } = useContext(ForecastContext);
 
-  useEffect(() => {
-    fetch(`https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${city}&days=5&lang=es`)
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('La ciudad ingresada no existe');
-        }
-        return response.json();
-      })
-      .then((data) => {
-        setForecast(data.forecast.forecastday);
-        setError(null);
-      })
-      .catch((error) => {
-        setError(error);
-      });
-  }, [apiKey, city]);
+  setCity(city); 
+  
+  if (!forecastData) {
+    return <div>Cargando...</div>;
+  }
+
 
   return (
     <div>
       {error && <div>Error: {error.message}</div>}
-      <Pronostico forecast={forecast} />
+      <Pronostico forecastData={forecastData} />
     </div>
   );
-}; export default PronosticoContainer
+};
+
+export default PronosticoContainer;
